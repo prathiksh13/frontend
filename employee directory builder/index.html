@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 4 Exercise</title>
+  <!-- 1) Boilerplate styles -->
+  <link rel="stylesheet" href="boilerplate.css">
+  <!-- 2) Student’s own styles (loaded after, so they can override or add new rules) -->
+  <link rel="stylesheet" href="student.css">
+</head>
+<body>
+  <div id="exercise-container">
+    <h1>Book Selection</h1>
+
+    <ul id="book-list" tabindex="0">
+      <li data-id="1" data-tooltip="A thrilling mystery.">Book One</li>
+      <li data-id="2" data-tooltip="An epic fantasy tale.">Book Two</li>
+      <li data-id="3" data-tooltip="A sci-fi adventure.">Book Three</li>
+      <li data-id="4" data-tooltip="A historical drama.">Book Four</li>
+      <li data-id="5" data-tooltip="A heartwarming romance.">Book Five</li>
+    </ul>
+
+    <form id="order-form">
+      <h2>Your Details</h2>
+      <label for="username">Name:
+        <input type="text" id="username" required>
+      </label>
+      <br><br>
+      <label for="format">Format:
+        <select id="format" required>
+          <option value="">Select format</option>
+          <option value="paperback">Paperback</option>
+          <option value="ebook">E-book</option>
+        </select>
+      </label>
+      <br><br>
+      <button type="submit" id="submit-btn">Submit Order</button>
+    </form>
+
+    <div id="summary"></div>
+  </div>
+
+  <script>
+  // … your existing JS here …
+  function formatEmployeeDirectory(input) {
+  const records = input.split(',');
+
+  const employees = records.map(record => {
+    const [namePart, rolePart] = record.split(':');
+
+    const name = namePart.trim();
+    const role = rolePart.trim().toLowerCase();
+
+    const formattedName = name
+      .split(' ')
+      .filter(Boolean)
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+      .join(' ');
+
+    const [firstName, lastName] = formattedName.split(' ');
+
+    return { firstName, lastName, role };
+  });
+
+  employees.sort((a, b) => a.lastName.localeCompare(b.lastName));
+
+  const lines = employees.map(emp => `${emp.firstName} ${emp.lastName} - ${emp.role}`);
+
+  return `Employee Directory:\n${lines.join('\n')}`;
+}
+
+// ✅ Call the function and display output
+//const input = "John Smith:developer, Mary Johnson :Designer, Alex Doe: HR";
+document.getElementById("order-form").addEventListener("submit", function(event) {
+  event.preventDefault(); // Stop form refresh
+
+  const input = document.getElementById("username").value + ": " + document.getElementById("format").value;
+  document.getElementById("summary").innerText = formatEmployeeDirectory(input);
+});
+  </script>
+</body>
+</html>

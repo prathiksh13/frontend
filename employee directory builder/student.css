@@ -1,0 +1,115 @@
+/* All selectors scoped under #exercise-container */
+#exercise-container {
+  position: relative; 	
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  color: #333;
+  line-height: 1.5;
+}
+
+#exercise-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+#exercise-container h2 {
+  margin-top: 30px;
+  color: #34495e;
+}
+
+/* Book List */
+#exercise-container #book-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+#exercise-container #book-list li {
+  cursor: pointer;
+  padding: 10px 15px;
+  border: 1px solid #bdc3c7;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background: #ecf0f1;
+  transition: background 0.2s, transform 0.1s;
+}
+#exercise-container #book-list li:hover {
+  background: #d0d7de;
+  transform: translateY(-1px);
+}
+#exercise-container #book-list li.selected {
+  background: #5dade2;
+  color: #fff;
+  border-color: #3498db;
+}
+
+/* Tooltips */
+#exercise-container .tooltip {
+  position: absolute;
+  background: rgba(44, 62, 80, 0.9);
+  color: #ecf0f1;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+  /* remove any top/left defaults here */
+}
+
+/* Form */
+#exercise-container form {
+  background: #f7f9fa;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #dfe6e9;
+}
+#exercise-container label {
+  display: block;
+  margin: 10px 0;
+}
+#exercise-container input,
+#exercise-container select {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+#exercise-container input:focus,
+#exercise-container select:focus {
+  border-color: #5dade2;
+  outline: none;
+}
+#exercise-container input.invalid,
+#exercise-container select.invalid {
+  border-color: #e74c3c;
+}
+
+/* Button */
+#exercise-container button {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  background: #2ecc71;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#exercise-container button:hover {
+  background: #27ae60;
+}
+
+/* Summary */
+#exercise-container #summary {
+  margin-top: 25px;
+  padding: 15px;
+  border: 1px dashed #7f8c8d;
+  border-radius: 4px;
+  background: #f0f3f4;
+  font-weight: bold;
+}

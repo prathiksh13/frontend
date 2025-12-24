@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Quote Generator</title>
+</head>
+<body>
+
+  <h2>Motivational Quote</h2>
+
+  <button id="quote-btn">New Quote</button>
+
+  <div id="quote-box" style="margin-top: 20px; font-size: 18px; font-style: italic;"></div>
+
+  <script>
+    // Function to fetch and display a quote
+    function fetchQuote() {
+      fetch("https://api.quotable.io/random")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch quote");
+          }
+          return response.json();
+        })
+        .then(data => {
+          const quote = data.content;
+          const author = data.author;
+
+          document.getElementById("quote-box").innerHTML =
+            `"${quote}" <br><br><b>- ${author}</b>`;
+        })
+        .catch(error => {
+          document.getElementById("quote-box").innerText =
+            "Oops! Couldn't load a quote.";
+          console.error("Error:", error);
+        });
+    }
+
+    // Button click triggers new quote
+    document.getElementById("quote-btn").addEventListener("click", fetchQuote);
+
+    // Fetch one quote when page loads
+    fetchQuote();
+  </script>
+
+</body>
+</html>

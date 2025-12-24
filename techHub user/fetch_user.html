@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fetch User Data</title>
+</head>
+<body>
+
+  <h2>User Information</h2>
+
+  <button id="load-btn">Load User</button>
+
+  <div id="user-info" style="margin-top: 15px; font-size: 18px; font-weight: bold;"></div>
+
+  <script>
+    document.getElementById("load-btn").addEventListener("click", loadUser);
+
+    function loadUser() {
+      // API call using fetch()
+      fetch("https://jsonplaceholder.typicode.com/users/1")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Extract name and email
+          const userName = data.name;
+          const userEmail = data.email;
+
+          // Display inside the div
+          document.getElementById("user-info").innerHTML =
+            `Name: ${userName}<br>Email: ${userEmail}`;
+        })
+        .catch(error => {
+          // Handle errors
+          document.getElementById("user-info").innerHTML =
+            "Error loading user data.";
+          console.error("Error:", error);
+        });
+    }
+  </script>
+
+</body>
+</html>

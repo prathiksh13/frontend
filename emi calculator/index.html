@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple Loan EMI Calculator</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+<h1>Loan EMI Calculator</h1>
+
+<form id="emiForm">
+<label>Loan Amount (Principal)
+<input id="principal" type="number" min="0" step="1000" placeholder="e.g. 500000" required>
+</label>
+
+<label>Annual Interest Rate (%)
+<input id="annualRate" type="number" min="0" step="0.01" placeholder="e.g. 7.5" required>
+</label>
+
+<label>Tenure (Years)
+<input id="tenureYears" type="number" min="0.1" step="0.1" placeholder="e.g. 10" required>
+</label>
+
+<button type="submit">Calculate</button>
+</form>
+
+<div class="results">
+<div>Monthly EMI: <strong id="emi">—</strong></div>
+<div>Total Payment: <strong id="totalPayment">—</strong></div>
+<div>Total Interest: <strong id="totalInterest">—</strong></div>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

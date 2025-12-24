@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker & Analytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Expense Tracker</h1>
+    <p class="subtitle">Filter, sort, and analyze your transactions</p>
+  </header>
+
+  <main class="container">
+    <!-- Controls -->
+    <section class="controls" aria-label="Controls">
+      <label for="categorySelect">Category:</label>
+      <select id="categorySelect" data-test-id="category-select">
+        <!-- Populated by JS -->
+      </select>
+
+      <label for="typeSelect">Type:</label>
+      <select id="typeSelect" data-test-id="type-select">
+        <option value="_ALL_">All</option>
+        <option value="Expense">Expense</option>
+        <option value="Income">Income</option>
+      </select>
+
+      <label for="searchInput">Search:</label>
+      <input id="searchInput" type="text" placeholder="Description contains..." data-test-id="search-input"/>
+
+      <label for="sortSelect">Sort by:</label>
+      <select id="sortSelect" data-test-id="sort-select">
+        <option value="DATE_DESC">Date ↓ (Newest)</option>
+        <option value="DATE_ASC">Date ↑ (Oldest)</option>
+        <option value="AMOUNT_DESC">Amount ↓ (High)</option>
+        <option value="AMOUNT_ASC">Amount ↑ (Low)</option>
+      </select>
+
+      <button id="applyBtn" data-test-id="apply">Apply</button>
+      <button id="resetBtn" class="secondary" data-test-id="reset">Reset</button>
+    </section>
+
+    <!-- Summary -->
+    <section class="panel" aria-label="Summary">
+      <h2 class="panel-title">Summary</h2>
+      <div class="summary-grid">
+        <div class="stat">
+          <div class="stat-label">Total Income</div>
+          <div id="sumIncome" class="stat-value" data-test-id="sum-income">₹0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Total Expense</div>
+          <div id="sumExpense" class="stat-value" data-test-id="sum-expense">₹0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Net</div>
+          <div id="sumNet" class="stat-value" data-test-id="sum-net">₹0</div>
+        </div>
+      </div>
+      <div id="categoryBreakdown" class="breakdown" data-test-id="breakdown">
+        <!-- Filled by JS using reduce -->
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="panel" aria-label="Transactions">
+      <h2 class="panel-title">Transactions</h2>
+      <div class="table-wrap">
+        <table class="table" data-test-id="tx-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Type</th>
+              <th class="right">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="txBody">
+            <!-- Rows rendered here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Embedded JSON dataset -->
+  <script type="application/json" id="transactions-data">
+  [
+    { "date": "2025-09-01", "description": "Groceries - Fresh Mart", "category": "Food", "type": "Expense", "amount": 1200 },
+    { "date": "2025-09-02", "description": "Monthly Salary", "category": "Salary", "type": "Income", "amount": 65000 },
+    { "date": "2025-09-03", "description": "Uber to campus", "category": "Transport", "type": "Expense", "amount": 230 },
+    { "date": "2025-09-04", "description": "Coffee with team", "category": "Food", "type": "Expense", "amount": 180 },
+    { "date": "2025-09-05", "description": "Course stipend", "category": "Stipend", "type": "Income", "amount": 5000 },
+    { "date": "2025-09-06", "description": "Movie night", "category": "Entertainment", "type": "Expense", "amount": 450 },
+    { "date": "2025-09-07", "description": "Metro card recharge", "category": "Transport", "type": "Expense", "amount": 600 },
+    { "date": "2025-09-08", "description": "Stationery", "category": "Office", "type": "Expense", "amount": 350 },
+    { "date": "2025-09-09", "description": "Sold old monitor", "category": "Misc", "type": "Income", "amount": 3000 },
+    { "date": "2025-09-10", "description": "Team lunch", "category": "Food", "type": "Expense", "amount": 2100 }
+  ]
+  </script>
+
+  <script src="tracker.js" defer></script>
+</body>
+</html>

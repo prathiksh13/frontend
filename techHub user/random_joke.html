@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Joke Generator</title>
+</head>
+<body>
+
+  <h2>Random Joke</h2>
+
+  <button id="joke-btn">Tell Me Another Joke</button>
+
+  <div id="joke-box" style="margin-top: 20px; font-size: 18px;"></div>
+
+  <script>
+    document.getElementById("joke-btn").addEventListener("click", fetchJoke);
+
+    function fetchJoke() {
+      fetch("https://official-joke-api.appspot.com/random_joke")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch joke");
+          }
+          return response.json();
+        })
+        .then(data => {
+          const setup = data.setup;
+          const punchline = data.punchline;
+
+          document.getElementById("joke-box").innerHTML =
+            `${setup}<br><b>${punchline}</b>`;
+        })
+        .catch(error => {
+          document.getElementById("joke-box").innerText =
+            "Oops! Couldn't load a joke.";
+          console.error("Error:", error);
+        });
+    }
+
+    // Load one joke when page opens
+    fetchJoke();
+  </script>
+
+</body>
+</html>
